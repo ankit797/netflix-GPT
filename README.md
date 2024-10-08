@@ -20,3 +20,5 @@
 - NetFlix GPT
     - Search bar
     - Movie suggestions
+
+// 57 min
