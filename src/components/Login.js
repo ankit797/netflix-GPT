@@ -3,15 +3,14 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import Header from "./Header";
 import { checkValidateData } from "../Utils/validate";
 import { auth } from "../Utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
+import { LOGIN_BACKGROUND_IMAGE, USER_AVATAR } from "../Utils/constant";
 
 const Login = () =>{
 
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
-    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const name = useRef(null);
@@ -34,11 +33,10 @@ const Login = () =>{
                     const user = userCredential.user;
 
                     updateProfile(user, {
-                        displayName: name.current.value, photoURL: "https://media.licdn.com/dms/image/v2/C5603AQHhvQa2jfhqOQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1650360263154?e=2147483647&v=beta&t=b1Kr3hAanMgDWrKb35dtpslmswICFmhrQRaZgzTn1jk"
+                        displayName: name.current.value, photoURL: USER_AVATAR
                       }).then(() => {
                         const {uid, email, displayName, photoURL} = auth.currentUser;
                         dispatch(addUser({uid: uid, email:email, displayName:displayName, photoURL: photoURL}));
-                        navigate("/browse");
                       }).catch((error) => {
                         setErrorMessage(errorMessage);
                       });
@@ -55,7 +53,6 @@ const Login = () =>{
             .then((userCredential) => {
               // Signed in 
               const user = userCredential.user;
-              navigate("/browse");
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -75,7 +72,7 @@ const Login = () =>{
             <Header />
             <div className="absolute">
                 <img 
-                    src="https://assets.nflxext.com/ffe/siteui/vlv3/4d2c5849-b306-4884-9036-6211f7ee0178/web/IN-en-20240930-TRIFECTA-perspective_1e1ca6cd-9e2d-4e9d-9e4b-ba0c2d3a0e31_large.jpg" 
+                    src={LOGIN_BACKGROUND_IMAGE} 
                     alt="background-image" 
                 />
             </div>

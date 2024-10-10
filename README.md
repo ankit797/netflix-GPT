@@ -21,7 +21,12 @@
         - npm i react-redux
 - Impleted Sign Out
 - Update Profile call API
+- User is logged in then redirect to browse page and not logged in then redirect to login page
+- Unsubscribed to the onAuthStateChanged callback
+- Add Harcoded values in constant file
 - Fetch Movies From TMDB Movies
+- Create hooks
+- Create movieSlice
 
 # Features
 - Login/Signup page
