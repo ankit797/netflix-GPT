@@ -13,7 +13,7 @@ const MainContainer = () =>{
         return Math.floor(Math.random() * (totalNumberOFMovie + 1));
     }
 
-    const mainMovie = movies[getRandomNumber(totalNumberOFMovie)];
+    const mainMovie = movies[0];
 
     const {id, original_title, overview} = mainMovie;
 
